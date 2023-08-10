@@ -1,0 +1,66 @@
+int sum_of_distinct_elements(int set1[], int size1, int set2[], int size2) {
+    int distinct_elements[100]; // Assuming a maximum of 100 distinct elements
+    int distinct_count = 0;
+    int sum = 0;
+    
+   
+    for (int i = 0; i < size1; i++) {
+        int element = set1[i];
+        int isDistinct = 1; // Flag to check if the element is distinct
+        
+       
+        for (int j = 0; j < distinct_count; j++) {
+            if (element == distinct_elements[j]) {
+                isDistinct = 0;
+                break;
+            }
+        }
+        
+        
+        if (isDistinct) {
+            distinct_elements[distinct_count] = element;
+            distinct_count++;
+        }
+    }
+    
+    
+    for (int i = 0; i < size2; i++) {
+        int element = set2[i];
+        int isDistinct = 1; // Flag to check if the element is distinct
+        
+       
+        for (int j = 0; j < distinct_count; j++) {
+            if (element == distinct_elements[j]) {
+                isDistinct = 0;
+                break;
+            }
+        }
+        
+       
+        if (isDistinct) {
+            distinct_elements[distinct_count] = element;
+            distinct_count++;
+        }
+    }
+    
+    
+    for (int i = 0; i < distinct_count; i++) {
+        sum += distinct_elements[i];
+    }
+    
+    return sum;
+}
+
+int main() {
+    int set1[] = {3, 1, 7, 9};
+    int size1 = sizeof(set1) / sizeof(set1[0]);
+    
+    int set2[] = {2, 4, 1, 9, 3};
+    int size2 = sizeof(set2) / sizeof(set2[0]);
+    
+    int result = sum_of_distinct_elements(set1, size1, set2, size2);
+    
+    printf("Sum of distinct elements: %d\n", result);
+    
+    return 0;
+}
